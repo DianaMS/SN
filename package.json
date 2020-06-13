@@ -1,0 +1,52 @@
+{
+  "name": "bunker",
+  "version": "1.0.0",
+  "description": "Social Network",
+  "main": "src/index.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "htmlhint": "htmlhint dist/*.html ",
+    "eslint": "eslint --ext .js src/ test/",
+    "stylelint": "stylelint --aei src/**/*.css",
+    "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
+    "test": "jest --coverage",
+    "start": "serve src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FiorellaChilcon/SN.git"
+  },
+  "keywords": [
+    "red",
+    "social",
+    "javascript",
+    "firebase",
+    "jest"
+  ],
+  "author": "Fiorella Chilcon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FiorellaChilcon/SN/issues"
+  },
+  "homepage": "https://github.com/FiorellaChilcon/SN#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.1",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^26.0.1",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jest": "^23.13.2",
+    "firebase-mock": "^2.3.2",
+    "htmlhint": "^0.14.0",
+    "jest": "^26.0.1",
+    "mock-cloud-firestore": "^0.12.0",
+    "regenerator-runtime": "^0.13.5",
+    "serve": "^11.3.2",
+    "stylelint": "^13.6.0",
+    "stylelint-config-recommended": "^3.0.0"
+  }
+}
