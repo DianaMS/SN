@@ -4,19 +4,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-storage.js"></script>
   <script src="https://kit.fontawesome.com/e43bba631d.js"></script>
   <title>BUNKER</title>
   <link rel="icon" type="image/png" href="images/icono.png" />
-  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="css/global.css">
 </head>
 
 <body>
-  <section id="actual-view">
-  </section>
+  <section id="actual-view"></section>
+  <script>
+    const firebaseConfig = {
+      apiKey: 'AIzaSyB3ai9vZ3ufFEfKMlmiV8ji7h0bHQwbaX4',
+      authDomain: 'code-flex-2d963.firebaseapp.com',
+      databaseURL: 'https://code-flex-2d963.firebaseio.com',
+      projectId: 'code-flex-2d963',
+      storageBucket: 'code-flex-2d963.appspot.com',
+      messagingSenderId: '971485385914',
+      appId: '1:971485385914:web:fbf36803ea73423d9e5e83',
+    };
+  </script>
+  <script>firebase.initializeApp(firebaseConfig);</script>
   <script type="module" src="index.js"></script>
 </body>
 

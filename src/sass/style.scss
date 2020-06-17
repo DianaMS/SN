@@ -1,0 +1,11 @@
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+@mixin flexModal($direction) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: $direction;
+}

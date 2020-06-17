@@ -1,0 +1,222 @@
+#home-view{
+  display: flex;
+  width: 100%;
+  min-width: 300px;
+header{
+  padding: 0 10px 0 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include size(100%, 50px);
+  background-color: rgba(3, 3, 150, 0.863);
+  position: fixed;
+  top: 0;
+  h1{
+    font-size: 20px;
+    img{
+      margin-right: 2px;
+       @include size(30px, 30px);
+    }
+  }
+  i{
+    color: #ffffff;
+    font-size: 25px;
+  }
+}
+main{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  .user-info{
+    @include size(92%, 18em);
+    max-width: 600px;
+    // border: solid rgb(123, 255, 0);
+    .user-cover-photo-container{
+      margin-top: 8px;
+      height: 12.5em;
+      // border: solid red;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      .user-cover-photo{
+        margin: 0;
+      border-radius: 15px 15px 0 0;
+      background-color: rgb(70, 68, 68);
+      @include size(100%, 10em);
+      // border: solid rgb(0, 119, 255);
+      }
+      .user-profile-photo{
+        margin: 0;
+        position: absolute;
+        align-self: flex-end;
+        @include size(75px, 75px);
+      }
+    }
+    .username-bio{
+      // border: solid green;
+      @include size(100%, 5em);
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
+      h3{
+        margin: 0;
+        font-size: 19px;
+        font-family: 'NanumGothic';
+      }
+      h4{
+        margin: 0;
+        color: rgb(48, 47, 47);
+        font-size: 17px;
+        font-family: 'NanumGothic';
+      }
+    }
+  }
+  .post-section{
+    @include flexModal(row);
+    width: 100%;
+    // border: solid red;
+    a{
+      margin: 0 22px;
+      @include flexModal(row);
+      @include size(220px, 44px);
+      color: rgb(73, 73, 73);
+      border-radius: 10px;
+      font-family: 'NanumGothic';
+      // border: solid 2px black;
+      box-shadow: 0px 0px 6px -2px rgba(0,0,0,0.75);
+    }
+  }
+}
+footer{
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  @include size(100%, 50px);
+  background-color: rgba(3, 3, 150, 0.863);
+  i{
+    color: #ffffff;
+    font-size: 25px;
+  }
+}
+}
+// menu style
+.menu-nav{
+  display: none;
+  flex-direction: column;
+  @include size(180px, 86px);
+  background-color: #ffffff;
+  box-shadow: -1px 0px 5px 0px rgba(0,0,0,0.75);
+  top: 50px;
+  right: 5px;
+  position: fixed;
+  border-radius: 4px;
+  div{
+    font-family: 'NanumGothic';
+    @include size(100%, 43px);
+    @include flexModal(column);
+  }
+  div:first-child{
+    a{
+      @include flexModal(column);
+      color: black;
+      @include size(100%, 43px);
+    }
+    border-bottom: solid 1px rgb(219, 219, 219);
+  }
+  // display: none;
+}
+.display-flex{
+  display: flex;
+}
+// contenedor de posts y opcion de publicar
+#lateral-right{
+  // border: solid red;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  #core-rail{
+    // border: solid red;
+    width: 100%;
+    #home-posts{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 50px;
+    }
+  }
+}
+// post style
+.actual-home-post{
+  @include size(100%, auto);
+  margin: 35px 0;
+  border-radius: 15px;
+  box-shadow: 0px 0px 6px -2px rgba(0,0,0,0.75);
+  .header-post{
+    // border: solid red;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @include size(100%, 3.5em);
+  img{
+    margin: 0 5px;
+  }
+  div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include size(75%, 3em);
+    // border: solid red;
+    p:first-child{
+      font-weight: bold;
+      font-size: 16px;
+    }
+    p{
+      font-family: 'NanumGothic';
+      font-size: 13px;
+      margin: 0;
+    }
+  }
+  .fa-globe-americas{
+    margin: 0 6px;
+  }
+  .fa-ellipsis-h{
+    font-size: 22px;
+    align-self: flex-start;
+  }
+  }
+  .main-post{
+    // border: solid green;
+    width: 100%;
+    p{
+      font-family: 'NanumGothic';
+      margin: 0;
+      // border: solid rgb(0, 30, 128);
+      padding: 10px;
+      width: 100%;
+    }
+    div{
+      @include size(100%, auto);
+    }
+  }
+  .footer-post{
+    padding: 8px;
+    // border: solid rgb(128, 0, 111);
+    width: 100%;
+    i{
+      margin: 5px;
+    }
+  }
+  }
+.right-size{
+  @include size(50px, 50px);
+}
+.pic-style{
+border-radius: 50%;
+background-color: rgba(6, 135, 255, 0.719);
+}

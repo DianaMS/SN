@@ -1,0 +1,115 @@
+#form-template-container{
+  @include flexModal(column);
+  // border: solid red;
+  width: 100%;
+  max-width: 600px;
+  > div{
+    @include size(100%, 40px);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    // border: solid red;
+    border-bottom: solid 1px rgb(184, 179, 179);
+    i{
+      margin-left: 5px;
+      font-size: 20px;
+    }
+  }
+  #switch-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    // border: solid red;
+    div:first-child{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      // border: solid red;
+      @include size(100%, 68px);
+      img{
+        margin-left: 5px;
+      }
+      h3{
+        margin: 10px;
+        font-weight: normal;
+        font-size: 19px;
+        font-family: 'NanumGothic';
+      }
+    }
+    form{
+      font-family: 'NanumGothic';
+      // border: solid red;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 0 15px;
+      select{
+        border-color: rgb(104, 103, 103);
+        align-self: flex-end;
+        @include size(90px, 38px);
+        font-size: 20px;
+        border-radius: 5px;
+        color: rgb(94, 93, 93);
+      }
+      textarea{
+        border: none;
+        margin: 8px 0;
+        @include size(330px, auto);
+        resize: none;
+      }
+      button{
+        justify-self: flex-end;
+        align-self: center;
+        background-color: #ffffff;
+        font-size: 16px;
+        border-radius: 10px;
+        border: solid 1px rgb(104, 103, 103);
+        margin: 30px 0;
+        @include size(95px, 45px);
+      }
+    }
+  }
+}
+#profile-img-selected{
+  display: none;
+}
+#profile-form{
+  @include flexModal(column);
+  width: 100%;
+  // border: solid red;
+  label[for=profile-img-selected]{
+    color: rgb(11, 114, 248);
+    margin-bottom: 20px;
+  }
+  label{
+    font-size: 20px;
+  }
+  input{
+    font-size: 20px;
+    @include size(250px, 40px);
+    border: solid 1px rgb(114, 112, 112);
+    margin: 8px 0 18px 0;
+  }
+}
+#switch-form{
+  width: 100%;
+}
+@media  (min-width: 1024px) and (max-width: 4000px){
+  #form-template-container{
+    justify-content: unset;
+    border: solid black;
+    height: 450px;
+  }
+  #switch-content{
+    border: solid red;
+    height: 400px;
+    form{
+      justify-content: space-between;
+      height: 320px;
+      border: solid rgb(21, 255, 0);
+      textarea{
+        justify-self: normal;
+      }
+    }
+  }
+}

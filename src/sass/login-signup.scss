@@ -1,0 +1,165 @@
+.cover-desktop-photo{
+  display: none;
+}
+#login-signup-view{
+      width: 100%;
+      @include flexModal(column);
+      // border: solid rgb(0, 0, 0);
+      width: 100%;
+      .cover-app-photo{
+        width: 100%;
+        height: 15%;
+        min-width: 300px;
+      }
+    }
+#switch-modal{
+  // border: solid red;
+  @include flexModal(column);
+  width: 100%;
+  margin: 2vh 0;
+}
+#login-modal, #signup-modal{
+  @include flexModal(column);
+  width: 90%;
+  max-width: 410px;
+  min-width: 300px;
+  border-radius: 22px;
+  background-color: rgba(3, 3, 150, 0.863);
+  header{
+    width: 100%;
+    margin: 0;
+    height: 8em;
+    @include flexModal(column);
+    color: #ffffff;
+    // border: solid red;
+    h1{
+      font-size: 28px;
+      img{
+        margin-right: 2px;
+        width: 38px;
+        height: 38px;
+      }
+    }
+    h2{
+      font-weight: normal;
+      font-family: 'NanumGothic';
+      font-size: 19px;
+      color: #ffffff;
+      font-size: 13px;
+      margin: 0;
+    }
+    h3{
+      font-weight: normal;
+      font-family: 'Sifonn';
+      font-size: 20px;
+      color: #B3C0E0;
+    }
+  }
+  main{
+    // border: solid red;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    form{
+      // border: solid rgb(0, 0, 0);
+      width: 100%;
+      @include flexModal(column);
+      input{
+        background-color: rgb(232, 240, 254);
+        border: none;
+        font-size: 14px;
+        padding: 1em;
+        width: 78%;
+        height: 3em;
+      }
+      input:first-child{
+        border-radius: 10px 10px 0 0;
+      }
+      input[type=password]{
+        border-radius: 0 0 10px 10px;
+      }
+      button{
+        border: none;
+        background-color: rgba(246, 229, 229, 0.19);
+        width: 53%;
+        height: 3.6em;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #ffffff;
+        border-radius: 8px;
+      }
+    }
+    .p-form{
+      color: #ffffff;
+      font-size: 15px;
+      font-family: 'NanumGothic';
+    }
+    p > a{
+      color: #B3C0E0;
+    }
+  }
+}
+#error-message{
+  font-family: 'NanumGothic';
+  font-size: 15px;
+  color: #ff5959;
+}
+.h1-style{
+  color: #ffffff;
+  padding: 3px;
+  font-family: 'Sifonn';
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  flex-direction: row;
+}
+#login-modal{
+  height: 31em;
+    .googleAndFacebookicons{
+      width: 18%;
+      max-width: 56px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      i{
+        font-size: 22px;
+        color: #ffffff;
+      }
+    }
+}
+#signup-modal{
+  height: 30em;
+  div{
+    margin: 2% 0;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    input[type=checkbox]{
+      width: 16px;
+      height: 16px;
+    }
+    label{
+      margin-bottom: 0;
+      font-family: 'NanumGothic';
+      font-size: 12px;
+      color: #ffffff;
+    }
+  }
+}
+
+@media  (min-width: 1024px) and (max-width: 4000px){
+  .cover-desktop-photo{
+    display: flex;
+    width: 50%;
+  }
+  .cover-app-photo{
+    display: none;
+  }
+  #login-signup-view{
+    // border: solid red;
+    flex-direction: row;
+  }
+}

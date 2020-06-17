@@ -1,3 +1,5 @@
+import { logout, currentUser } from '../firebase/auth.js';
+
 export const home = () => {
   const div = document.createElement('div');
   div.id = 'home-view';
@@ -5,8 +7,12 @@ export const home = () => {
   <header>
     <h1 class="h1-style"><img src="images/logo.png" alt="app logo"> BUNKER</h1>
     <i class="fas fa-cog"></i>
+    <nav class="menu-nav">
+      <div><a href="#/profile-form">Edit profile</a></div>
+      <div id='log-out'>Log Out</div>
+    </nav>
   </header>
-  <main>
+  <main id="main-container">
   <div class="user-info">
     <div class="user-cover-photo-container">
       <div class="user-cover-photo"><img src="" alt="cover photo"></div>
@@ -24,24 +30,6 @@ export const home = () => {
     </div>
     <div id="core-rail">
       <div id="home-posts">
-        <div class="actual-home-post">
-          <div class="header-post">
-            <img src="images/profile-cube.png" alt="profile photo" class="pic-style right-size">
-            <div>
-              <p>User Name</p>
-              <p>Date<i class="fas fa-globe-americas"></i></p>
-            </div>
-            <i class="fas fa-ellipsis-h"></i>
-          </div>
-          <div class="main-post">
-            <p>ccc</p>
-            <div></div>
-          </div>
-          <div class="footer-post">
-            <i class="far fa-heart"></i>
-            <i class="far fa-comments"></i>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -51,5 +39,27 @@ export const home = () => {
     <i class="fas fa-user"></i>
   </footer>`;
   div.innerHTML = homeView;
+  // DISPLAY MENU
+  const settingsButton = div.querySelector('.fa-cog');
+  const menu = div.querySelector('.menu-nav');
+  settingsButton.addEventListener('click', () => {
+    menu.classList.toggle('display-flex');
+  });
+  // LOG OUT
+  const logOutButton = div.querySelector('#log-out');
+  logOutButton.addEventListener('click', () => {
+    logout();
+    window.location.hash = '/log-in';
+  });
+  // Personalize Home
+  const user = currentUser();
+  if (user !== null) {
+    const ProfileName = div.querySelector('.username-bio h3');
+    ProfileName.innerHTML = user.displayName;
+  }
+  // firebase.auth().onAuthStateChanged((user) => {
+  //   if (user) {
+  //   }
+  // });
   return div;
-}
+};

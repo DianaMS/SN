@@ -1,0 +1,35 @@
+@import 'style.scss', 'login-signup.scss', 'home.scss', 'form.scss';
+
+@font-face {
+font-family: 'Sifonn';
+src: url('../font/SIFONN_PRO.otf');
+}
+@font-face {
+font-family: 'NanumGothic';
+src: url('../font/NanumGothic-Regular.ttf');
+}
+*{
+box-sizing: border-box;
+}
+body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+#actual-view{
+  margin: auto;
+  vertical-align: middle;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+input:focus{
+  outline: none;
+}
+a{
+  text-decoration: none;
+}

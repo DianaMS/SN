@@ -1,3 +1,8 @@
+import {
+  registerUserEmail, verificationEmail,
+} from '../firebase/auth.js';
+import { updateUserProfile } from '../firebase/profile.js';
+
 export const signup = () => {
   const div = document.createElement('div');
   div.id = 'signup-modal';
@@ -8,7 +13,7 @@ export const signup = () => {
     <h3>WELCOME!</h3>
   </header>
   <main>
-    <form id="login-form">
+    <form id="signup-form">
       <input type="text" id="signup-username" placeholder="username" required>
       <input type="email" id="signup-email" placeholder="email" required>
       <input type="password" id="signup-password" placeholder="password" required>
@@ -16,10 +21,28 @@ export const signup = () => {
         <input type="checkbox" id="agreement" required>
         <label for="agreement">I agree to the Terms of Service and Privacy Statement</label>
       </div>
-      <button><a href="#/home">SIGN UP</a></button>
+      <p id="error-message"></p>
+      <button>SIGN UP</button>
     </form>
-    <p>Already have an account? <a href="#/log-in">LOG IN HERE</a></p>
+    <p class="p-form">Already have an account? <a href="#/log-in">LOG IN HERE</a></p>
   </main>`;
   div.innerHTML = signupView;
+  // USER SIGN UP
+  const signupForm = div.querySelector('#signup-form');
+  const errorMessage = div.querySelector('#error-message');
+  signupForm.addEventListener('submit', (e) => {
+    const userEmail = signupForm['signup-email'].value;
+    const userPassword = signupForm['signup-password'].value;
+    const userName = signupForm['signup-username'].value;
+    e.preventDefault();
+    registerUserEmail(userEmail, userPassword)
+      .then(() => {
+        updateUserProfile(userName);
+        verificationEmail();
+        errorMessage.innerHTML = '';
+        window.location.hash = '/home';
+      })
+      .catch((err) => { errorMessage.innerHTML = err.message; });
+  });
   return div;
 };
