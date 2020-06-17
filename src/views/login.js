@@ -21,7 +21,7 @@ export const login = () => {
           <input type="email" id="login-email" placeholder="email" required>
           <input type="password" id="login-password" autocomplete="on" placeholder="password" required>
           <p id="error-message"></p>
-          <p  class="p-form" id="forgot-password-button">forgot password?</p>
+          <p class="p-form" id="forgot-password-button">forgot password?</p>
           <button>LOG IN</button>
         </form>
         <p class="p-form">or login with...</p>

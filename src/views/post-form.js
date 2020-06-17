@@ -24,9 +24,15 @@ export const postForm = () => {
   </section>
   `;
   div.innerHTML = template;
+  // GO BACK BUTTON
   const goBackButton = div.querySelector('.fa-arrow-left');
   goBackButton.addEventListener('click', () => {
     window.history.back();
+  });
+  // MAKE A POST
+  const makeAPostForm = div.querySelector('#post-form');
+  makeAPostForm.addEventListener('submit', (e) => {
+    e.preventDefault();
   });
   return div;
 };

@@ -26,7 +26,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 90%;
+  width: 95%;
+  padding: 20px 10px 0 10px;
   max-width: 410px;
   min-width: 300px;
   border-radius: 22px;
@@ -34,7 +35,7 @@
   #login-modal header, #signup-modal header {
     width: 100%;
     margin: 0;
-    height: 8em;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,8 +99,11 @@
       color: #B3C0E0; }
 
 #error-message {
+  text-align: center;
+  margin: 0 0 10px 0;
   font-family: 'NanumGothic';
-  font-size: 15px;
+  font-weight: bold;
+  font-size: 13px;
   color: #ff5959; }
 
 .h1-style {
@@ -114,6 +118,8 @@
 
 #login-modal {
   height: 31em; }
+  #login-modal #error-message {
+    margin: 10px 0 0 0; }
   #login-modal .googleAndFacebookicons {
     width: 18%;
     max-width: 56px;
@@ -125,9 +131,11 @@
       color: #ffffff; }
 
 #signup-modal {
-  height: 30em; }
+  height: 29em; }
+  #signup-modal #error-message {
+    margin: 0 0 10px 0; }
   #signup-modal div {
-    margin: 2% 0;
+    margin: 10px 0;
     width: 70%;
     display: flex;
     flex-direction: row; }
@@ -135,7 +143,6 @@
       width: 16px;
       height: 16px; }
     #signup-modal div label {
-      margin-bottom: 0;
       font-family: 'NanumGothic';
       font-size: 12px;
       color: #ffffff; }
@@ -146,6 +153,13 @@
     width: 50%; }
   .cover-app-photo {
     display: none; }
+  #login-modal, #signup-modal {
+    padding: 20px 15px 0 15px; }
+  #signup-modal {
+    height: 31em;
+    padding: 20px 15px 0 15px; }
+  #login-modal {
+    height: 32em; }
   #login-signup-view {
     flex-direction: row; } }
 
@@ -398,10 +412,11 @@
         border-radius: 5px;
         color: #5e5d5d; }
       #form-template-container #switch-content form textarea {
+        font-size: 18px;
         border: none;
         margin: 8px 0;
-        width: 330px;
-        height: auto;
+        width: 100%;
+        height: 200px;
         resize: none; }
       #form-template-container #switch-content form button {
         justify-self: flex-end;
@@ -410,7 +425,7 @@
         font-size: 16px;
         border-radius: 10px;
         border: solid 1px #686767;
-        margin: 30px 0;
+        margin: 25px 0;
         width: 95px;
         height: 45px; }
 
@@ -440,18 +455,11 @@
 
 @media (min-width: 1024px) and (max-width: 4000px) {
   #form-template-container {
+    margin-top: 50px;
     justify-content: unset;
-    border: solid black;
-    height: 450px; }
-  #switch-content {
-    border: solid red;
-    height: 400px; }
-    #switch-content form {
-      justify-content: space-between;
-      height: 320px;
-      border: solid #15ff00; }
-      #switch-content form textarea {
-        justify-self: normal; } }
+    border: solid 2px #686666;
+    border-radius: 10px;
+    height: 450px; } }
 
 @font-face {
   font-family: 'Sifonn';
@@ -480,7 +488,7 @@ body {
   align-items: center;
   justify-content: center; }
 
-input:focus {
+input:focus, textarea:focus {
   outline: none; }
 
 a {
