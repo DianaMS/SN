@@ -24,64 +24,20 @@ header{
   }
 }
 main{
-  margin-top: 50px;
+  margin: 50px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  .user-info{
-    @include size(92%, 18em);
-    max-width: 600px;
-    // border: solid rgb(123, 255, 0);
-    .user-cover-photo-container{
-      margin-top: 8px;
-      height: 12.5em;
-      // border: solid red;
-      display: flex;
-      justify-content: center;
-      padding: 0;
-      .user-cover-photo{
-        margin: 0;
-      border-radius: 15px 15px 0 0;
-      background-color: rgb(70, 68, 68);
-      @include size(100%, 10em);
-      // border: solid rgb(0, 119, 255);
-      }
-      .user-profile-photo{
-        margin: 0;
-        position: absolute;
-        align-self: flex-end;
-        @include size(75px, 75px);
-      }
-    }
-    .username-bio{
-      // border: solid green;
-      @include size(100%, 5em);
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      flex-direction: column;
-      h3{
-        margin: 0;
-        font-size: 19px;
-        font-family: 'NanumGothic';
-      }
-      h4{
-        margin: 0;
-        color: rgb(48, 47, 47);
-        font-size: 17px;
-        font-family: 'NanumGothic';
-      }
-    }
-  }
   .post-section{
+    margin: 15px 0;
     @include flexModal(row);
     width: 100%;
     // border: solid red;
     a{
-      margin: 0 22px;
+      margin: 0 15px;
       @include flexModal(row);
-      @include size(220px, 44px);
+      @include size(70%, 44px);
       color: rgb(73, 73, 73);
       border-radius: 10px;
       font-family: 'NanumGothic';
@@ -104,7 +60,56 @@ footer{
   }
 }
 }
-#main-section{
+// profile data
+
+.user-info{
+  display: none;
+  flex-direction: column;
+  @include size(92%, 18em);
+  max-width: 600px;
+  // border: solid rgb(123, 255, 0);
+  .user-cover-photo-container{
+    margin-top: 8px;
+    height: 12.5em;
+    // border: solid red;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    .user-cover-photo{
+      margin: 0;
+    border-radius: 15px 15px 0 0;
+    background-color: rgb(70, 68, 68);
+    @include size(100%, 10em);
+    // border: solid rgb(0, 119, 255);
+    }
+    .user-profile-photo{
+      margin: 0;
+      position: absolute;
+      align-self: flex-end;
+      @include size(75px, 75px);
+    }
+  }
+  .username-bio{
+    // border: solid green;
+    @include size(100%, 5em);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    h3{
+      margin: 0;
+      font-size: 19px;
+      font-family: 'NanumGothic';
+    }
+    h4{
+      margin: 0;
+      color: rgb(48, 47, 47);
+      font-size: 17px;
+      font-family: 'NanumGothic';
+    }
+  }
+}
+.main-section-style{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,9 +140,6 @@ footer{
     border-bottom: solid 1px rgb(219, 219, 219);
   }
 }
-.display-flex{
-  display: flex;
-}
 // contenedor de posts y opcion de publicar
 #lateral-right{
   // border: solid red;
@@ -148,13 +150,12 @@ footer{
   #core-rail{
     // border: solid red;
     width: 100%;
-    #home-posts{
+    #home-posts, #profile-posts{
     display: flex;
-  margin: 30px 0 10px 0;
+    margin-top: 10px;
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    padding-bottom: 50px;
     }
   }
 }
@@ -173,11 +174,11 @@ footer{
   img{
     margin: 0 5px;
   }
-  div{
+  .date-username{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    @include size(75%, 3em);
+    @include size(52%, 3em);
     // border: solid red;
     p:first-child{
       font-weight: bold;
@@ -188,13 +189,23 @@ footer{
       font-size: 13px;
       margin: 0;
     }
+    select{
+      @include size(70px, 30px)
+    }
+  }
+  .menu-container{
+    @include size(30%, 3.5em);
+    // border: solid red;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    i{
+      margin: 4px;
+      font-size: 22px;
+    }
   }
   .fa-globe-americas{
     margin: 0 6px;
-  }
-  .fa-ellipsis-h{
-    font-size: 22px;
-    align-self: flex-start;
   }
   }
   .main-post{
@@ -220,10 +231,65 @@ footer{
     }
   }
   }
+  // Post menu
+  .post-menu{
+    @include size(120px, 60px);
+    display: none;
+    position: relative;
+    right: 5px;
+    flex-direction: column;
+    box-shadow: 0px 0px 5px 3px rgba(102,100,102,0.28);
+    button{
+     border: none;
+     background: none;
+     @include size(100%, 30px);
+    }
+    button:first-child{
+      border-bottom: solid 1px rgb(177, 175, 175);
+    }
+  }
 .right-size{
   @include size(50px, 50px);
 }
 .pic-style{
 border-radius: 50%;
 background-color: rgba(6, 135, 255, 0.719);
+}
+.display-flex{
+  display: flex;
+}
+.red {
+  color: red;
+}
+@media  (min-width: 1024px) and (max-width: 4000px){
+  .flex-row{
+    flex-direction: row;
+    align-items: unset;
+    justify-content: space-evenly;
+  }
+  .user-info{
+    height: 24em;
+    display: flex;
+  .user-cover-photo-container{
+    height: 18em;
+    .user-cover-photo{
+      height: 15em;
+    }
+    .user-profile-photo{
+      @include size(98px, 98px);
+    }
+  }
+}
+.actual-home-post{
+.header-post{
+  // border: solid red;
+  height: 3.8em;
+img{
+  margin: 0 6px;
+}
+.date-username{
+  @include size(60%, 3.5em);
+}
+}
+}
 }

@@ -24,8 +24,8 @@ const firstTimeUser = (userId, displayName, profilePhoto) => {
     }
   });
 };
-const getHomePosts = (element) => {
-  return db.collection('posts').where('visibility', '==', 'public').orderBy('timestamp', 'desc').onSnapshot((postsDocuments) => {
+const getPosts = (element, query, value) => {
+  return db.collection('posts').where(query, '==', value).orderBy('timestamp', 'desc').onSnapshot((postsDocuments) => {
     const changes = postsDocuments.docChanges();
     changes.forEach((change) => {
       if (change.type === 'added') {
@@ -53,6 +53,21 @@ const addPost = (userId, content, photo, visibility) => {
     comments: [],
   });
 };
+
+const updateDocument = (collection, docId, arrFields, arrNewValues) => {
+  const obj = {};
+  arrFields.forEach((field, index) => {
+    obj[field] = arrNewValues[index];
+  });
+  return firebase.firestore().collection(collection).doc(docId).update(obj);
+};
+const deleteDocument = (collection, docId) => firebase.firestore().collection(collection).doc(docId).delete();
+const deleteDocumentIdFromUserCollection = (userId, docId, field) => {
+  return firebase.firestore().collection('users').doc(userId).update({
+    [field]: firebase.firestore.FieldValue.arrayRemove(docId),
+  });
+};
 export {
-  firstTimeUser, addPost, getHomePosts, addDocumentIdToUserCollection,
+  firstTimeUser, addPost, getPosts, addDocumentIdToUserCollection,
+  deleteDocument, deleteDocumentIdFromUserCollection, updateDocument,
 };

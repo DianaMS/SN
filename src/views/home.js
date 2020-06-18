@@ -1,8 +1,9 @@
-import { firstTimeUser, getHomePosts } from '../firebase/firestore.js';
+import { firstTimeUser, getPosts } from '../firebase/firestore.js';
 
 export const home = () => {
   const div = document.createElement('div');
   div.id = 'main-section';
+  div.className = 'main-section-style';
   const homeView = `
     <div class="user-info">
       <div class="user-cover-photo-container">
@@ -27,12 +28,18 @@ export const home = () => {
   div.innerHTML = homeView;
   // Personalize Home
   const homePosts = div.querySelector('#home-posts');
-  getHomePosts(homePosts);
+  getPosts(homePosts, 'visibility', 'public');
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const ProfileName = div.querySelector('.username-bio h3');
       ProfileName.innerHTML = user.displayName;
       firstTimeUser(user.uid, user.displayName, user.photoURL);
+      if (user.photoURL !== null || user.photoURL !== '') {
+        const photoPost = div.querySelectorAll('.pic-style');
+        photoPost.forEach((imgTag) => {
+          imgTag.src = user.photoURL;
+        });
+      }
     }
   });
   return div;

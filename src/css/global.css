@@ -187,62 +187,25 @@
       color: #ffffff;
       font-size: 25px; }
   .home-view main {
-    margin-top: 50px;
+    margin: 50px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%; }
-    .home-view main .user-info {
-      width: 92%;
-      height: 18em;
-      max-width: 600px; }
-      .home-view main .user-info .user-cover-photo-container {
-        margin-top: 8px;
-        height: 12.5em;
-        display: flex;
-        justify-content: center;
-        padding: 0; }
-        .home-view main .user-info .user-cover-photo-container .user-cover-photo {
-          margin: 0;
-          border-radius: 15px 15px 0 0;
-          background-color: #464444;
-          width: 100%;
-          height: 10em; }
-        .home-view main .user-info .user-cover-photo-container .user-profile-photo {
-          margin: 0;
-          position: absolute;
-          align-self: flex-end;
-          width: 75px;
-          height: 75px; }
-      .home-view main .user-info .username-bio {
-        width: 100%;
-        height: 5em;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        flex-direction: column; }
-        .home-view main .user-info .username-bio h3 {
-          margin: 0;
-          font-size: 19px;
-          font-family: 'NanumGothic'; }
-        .home-view main .user-info .username-bio h4 {
-          margin: 0;
-          color: #302f2f;
-          font-size: 17px;
-          font-family: 'NanumGothic'; }
     .home-view main .post-section {
+      margin: 15px 0;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: row;
       width: 100%; }
       .home-view main .post-section a {
-        margin: 0 22px;
+        margin: 0 15px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: row;
-        width: 220px;
+        width: 70%;
         height: 44px;
         color: #494949;
         border-radius: 10px;
@@ -261,7 +224,48 @@
       color: #ffffff;
       font-size: 25px; }
 
-#main-section {
+.user-info {
+  display: none;
+  flex-direction: column;
+  width: 92%;
+  height: 18em;
+  max-width: 600px; }
+  .user-info .user-cover-photo-container {
+    margin-top: 8px;
+    height: 12.5em;
+    display: flex;
+    justify-content: center;
+    padding: 0; }
+    .user-info .user-cover-photo-container .user-cover-photo {
+      margin: 0;
+      border-radius: 15px 15px 0 0;
+      background-color: #464444;
+      width: 100%;
+      height: 10em; }
+    .user-info .user-cover-photo-container .user-profile-photo {
+      margin: 0;
+      position: absolute;
+      align-self: flex-end;
+      width: 75px;
+      height: 75px; }
+  .user-info .username-bio {
+    width: 100%;
+    height: 5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column; }
+    .user-info .username-bio h3 {
+      margin: 0;
+      font-size: 19px;
+      font-family: 'NanumGothic'; }
+    .user-info .username-bio h4 {
+      margin: 0;
+      color: #302f2f;
+      font-size: 17px;
+      font-family: 'NanumGothic'; }
+
+.main-section-style {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -297,9 +301,6 @@
       width: 100%;
       height: 43px; }
 
-.display-flex {
-  display: flex; }
-
 #lateral-right {
   width: 100%;
   max-width: 600px;
@@ -307,13 +308,12 @@
   flex-direction: column; }
   #lateral-right #core-rail {
     width: 100%; }
-    #lateral-right #core-rail #home-posts {
+    #lateral-right #core-rail #home-posts, #lateral-right #core-rail #profile-posts {
       display: flex;
-      margin: 30px 0 10px 0;
+      margin-top: 10px;
       justify-content: center;
       flex-direction: column;
-      width: 100%;
-      padding-bottom: 50px; }
+      width: 100%; }
 
 .actual-home-post {
   width: 100%;
@@ -329,24 +329,33 @@
     height: 3.5em; }
     .actual-home-post .header-post img {
       margin: 0 5px; }
-    .actual-home-post .header-post div {
+    .actual-home-post .header-post .date-username {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 75%;
+      width: 52%;
       height: 3em; }
-      .actual-home-post .header-post div p:first-child {
+      .actual-home-post .header-post .date-username p:first-child {
         font-weight: bold;
         font-size: 16px; }
-      .actual-home-post .header-post div p {
+      .actual-home-post .header-post .date-username p {
         font-family: 'NanumGothic';
         font-size: 13px;
         margin: 0; }
+      .actual-home-post .header-post .date-username select {
+        width: 70px;
+        height: 30px; }
+    .actual-home-post .header-post .menu-container {
+      width: 30%;
+      height: 3.5em;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: row; }
+      .actual-home-post .header-post .menu-container i {
+        margin: 4px;
+        font-size: 22px; }
     .actual-home-post .header-post .fa-globe-americas {
       margin: 0 6px; }
-    .actual-home-post .header-post .fa-ellipsis-h {
-      font-size: 22px;
-      align-self: flex-start; }
   .actual-home-post .main-post {
     width: 100%; }
     .actual-home-post .main-post p {
@@ -363,6 +372,22 @@
     .actual-home-post .footer-post i {
       margin: 5px; }
 
+.post-menu {
+  width: 120px;
+  height: 60px;
+  display: none;
+  position: relative;
+  right: 5px;
+  flex-direction: column;
+  box-shadow: 0px 0px 5px 3px rgba(102, 100, 102, 0.28); }
+  .post-menu button {
+    border: none;
+    background: none;
+    width: 100%;
+    height: 30px; }
+  .post-menu button:first-child {
+    border-bottom: solid 1px #b1afaf; }
+
 .right-size {
   width: 50px;
   height: 50px; }
@@ -370,6 +395,35 @@
 .pic-style {
   border-radius: 50%;
   background-color: rgba(6, 135, 255, 0.719); }
+
+.display-flex {
+  display: flex; }
+
+.red {
+  color: red; }
+
+@media (min-width: 1024px) and (max-width: 4000px) {
+  .flex-row {
+    flex-direction: row;
+    align-items: unset;
+    justify-content: space-evenly; }
+  .user-info {
+    height: 24em;
+    display: flex; }
+    .user-info .user-cover-photo-container {
+      height: 18em; }
+      .user-info .user-cover-photo-container .user-cover-photo {
+        height: 15em; }
+      .user-info .user-cover-photo-container .user-profile-photo {
+        width: 98px;
+        height: 98px; }
+  .actual-home-post .header-post {
+    height: 3.8em; }
+    .actual-home-post .header-post img {
+      margin: 0 6px; }
+    .actual-home-post .header-post .date-username {
+      width: 60%;
+      height: 3.5em; } }
 
 #form-template-container {
   display: flex;

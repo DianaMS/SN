@@ -22,9 +22,24 @@ export const changeView = (route) => {
       return switchModal.appendChild(components.signup());
     }
     case '#/home': {
-      homeView.classList.add('display-flex');
       mainContainer.innerHTML = '';
-      return mainContainer.appendChild(components.home());
+      homeView.classList.add('display-flex');
+      mainContainer.appendChild(components.home());
+      const mainSection = mainContainer.querySelector('.main-section-style');
+      mainSection.classList.add('flex-row');
+      const userInfo = mainContainer.querySelector('.user-info');
+      return userInfo.classList.remove('display-flex');
+    }
+    case '#/profile': {
+      mainContainer.innerHTML = '';
+      mainContainer.appendChild(components.home());
+      const mainSection = mainContainer.querySelector('#main-section');
+      mainSection.classList.remove('.flex-row');
+      const userInfo = mainContainer.querySelector('.user-info');
+      userInfo.classList.add('display-flex');
+      const coreRail = mainContainer.querySelector('#core-rail');
+      coreRail.innerHTML = '';
+      return coreRail.appendChild(components.profile());
     }
     case '#/post-section': {
       mainContainer.innerHTML = '';
