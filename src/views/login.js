@@ -43,17 +43,27 @@ export const login = () => {
     e.preventDefault();
     logIn(userEmail, userPassword)
       .then(() => {
+        window.location.hash = '#/home';
         errorMessage.innerHTML = '';
-        window.location.hash = '/home';
       })
       .catch((err) => { errorMessage.innerHTML = err.message; });
   });
   // GOOGLE LOG IN
   const signinGoogle = div.querySelector('.fa-google');
-  signinGoogle.addEventListener('click', logInGoogle);
+  signinGoogle.addEventListener('click', () => {
+    logInGoogle()
+      .then(() => {
+        window.location.hash = '#/home';
+      });
+  });
   // FACEBOOK LOG IN
   const signinFacebook = div.querySelector('.fa-facebook-f');
-  signinFacebook.addEventListener('click', logInFacebook);
+  signinFacebook.addEventListener('click', () => {
+    logInFacebook()
+      .then(() => {
+        window.location.hash = '#/home';
+      });
+  });
   // RECOVER PASSWORD
   const forgotPasswordButton = div.querySelector('#forgot-password-button');
   forgotPasswordButton.addEventListener('click', () => {

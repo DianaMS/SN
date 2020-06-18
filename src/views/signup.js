@@ -37,10 +37,10 @@ export const signup = () => {
     e.preventDefault();
     registerUserEmail(userEmail, userPassword)
       .then(() => {
+        window.location.hash = '#/home';
         updateUserProfile(userName);
         verificationEmail();
         errorMessage.innerHTML = '';
-        window.location.hash = '/home';
       })
       .catch((err) => { errorMessage.innerHTML = err.message; });
   });
