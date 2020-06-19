@@ -1,4 +1,4 @@
-@import 'style.scss', 'login-signup.scss', 'home.scss', 'form.scss';
+@import 'style.scss', 'login-signup.scss', 'home.scss', 'form.scss', 'posts.scss';
 
 @font-face {
 font-family: 'Sifonn';
@@ -29,4 +29,10 @@ input:focus, textarea:focus{
 }
 a{
   text-decoration: none;
+}
+.display-flex{
+  display: flex;
+}
+.red {
+  color: red;
 }

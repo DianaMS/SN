@@ -1,14 +1,18 @@
-import { renderPost } from './post-template.js';
+import { renderPost } from '../templates/post.js';
 
 const db = firebase.firestore();
-// const getData = (callback, collectionName) => db.collection(collectionName)
-//   .onSnapshot((docs) => {
-//     const data = [];
-//     docs.forEach((doc) => {
-//       data.push({ id: doc.id, ...doc.data() });
-//     });
-//     callback(data);
-//   });
+const getData = (callback, collectionName) => db.collection(collectionName)
+  .onSnapshot((docs) => {
+    const data = [];
+    docs.forEach((doc) => {
+      data.push({ id: doc.id, ...doc.data() });
+    });
+    callback(data);
+  });
+const getDocument = (collectionName, docId, callback) => db.collection(collectionName).doc(docId)
+  .get().then((doc) => {
+    callback({ id: doc.id, ...doc.data() });
+  });
 const firstTimeUser = (userId, displayName, profilePhoto) => {
   db.collection('users').doc(userId).get().then((doc) => {
     if (!doc.exists) {
@@ -47,7 +51,6 @@ const addPost = (userId, content, photo, visibility) => {
     photo,
     visibility,
     likes: 0,
-    comments: [],
   });
 };
 const addComment = (userId, postId, content) => {
@@ -59,18 +62,18 @@ const addComment = (userId, postId, content) => {
   });
 };
 const updateDocument = (collection, docId, field, value) => {
-  return firebase.firestore().collection(collection).doc(docId).update({
+  return db.collection(collection).doc(docId).update({
     [field]: value,
   });
 };
-const deleteDocument = (collection, docId) => firebase.firestore().collection(collection).doc(docId).delete();
+const deleteDocument = (collection, docId) => db.collection(collection).doc(docId).delete();
 const deleteDocumentIdFromUserCollection = (userId, docId, field) => {
-  return firebase.firestore().collection('users').doc(userId).update({
+  return db.collection('users').doc(userId).update({
     [field]: firebase.firestore.FieldValue.arrayRemove(docId),
   });
 };
 export {
   firstTimeUser, addPost, getPosts, addDocumentIdToUserCollection,
   deleteDocument, deleteDocumentIdFromUserCollection, updateDocument,
-  addComment,
+  addComment, getData, getDocument,
 };

@@ -315,112 +315,13 @@
       flex-direction: column;
       width: 100%; }
 
-.actual-home-post {
-  width: 100%;
-  height: auto;
-  margin: 10px 0;
-  border-radius: 15px;
-  box-shadow: 0px 0px 6px -2px rgba(0, 0, 0, 0.75); }
-  .actual-home-post .header-post {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    height: 3.5em; }
-    .actual-home-post .header-post img {
-      margin: 0 5px; }
-    .actual-home-post .header-post .date-username {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 52%;
-      height: 3em; }
-      .actual-home-post .header-post .date-username p:first-child {
-        font-weight: bold;
-        font-size: 16px; }
-      .actual-home-post .header-post .date-username p {
-        font-family: 'NanumGothic';
-        font-size: 13px;
-        margin: 0; }
-      .actual-home-post .header-post .date-username select {
-        width: 70px;
-        height: 30px; }
-    .actual-home-post .header-post .menu-container {
-      width: 30%;
-      height: 3.5em;
-      display: flex;
-      justify-content: flex-end;
-      flex-direction: row; }
-      .actual-home-post .header-post .menu-container i {
-        margin: 4px;
-        font-size: 22px; }
-    .actual-home-post .header-post .fa-globe-americas {
-      margin: 0 6px; }
-  .actual-home-post .main-post {
-    width: 100%; }
-    .actual-home-post .main-post p {
-      font-family: 'NanumGothic';
-      margin: 0;
-      padding: 10px;
-      width: 100%; }
-    .actual-home-post .main-post div {
-      width: 100%;
-      height: auto; }
-  .actual-home-post .footer-post {
-    padding: 8px;
-    width: 100%; }
-    .actual-home-post .footer-post i {
-      margin: 5px; }
-
-.post-menu {
-  width: 120px;
-  height: 60px;
-  display: none;
-  position: relative;
-  right: 5px;
-  flex-direction: column;
-  box-shadow: 0px 0px 5px 3px rgba(102, 100, 102, 0.28); }
-  .post-menu button {
-    border: none;
-    background: none;
-    width: 100%;
-    height: 30px; }
-  .post-menu button:first-child {
-    border-bottom: solid 1px #b1afaf; }
-
 .right-size {
   width: 50px;
   height: 50px; }
 
-.comment-form {
-  display: none;
-  align-items: center;
-  justify-content: space-evenly; }
-  .comment-form input {
-    border-radius: 8px;
-    border: solid 1px black;
-    width: 70%;
-    height: 36px; }
-  .comment-form button {
-    background: none;
-    border: none;
-    border: none; }
-    .comment-form button i {
-      font-size: 18px; }
-
-.comment-size {
-  width: 40px;
-  height: 40px; }
-
 .pic-style {
   border-radius: 50%;
   background-color: rgba(6, 135, 255, 0.719); }
-
-.display-flex {
-  display: flex; }
-
-.red {
-  color: red; }
 
 @media (min-width: 1024px) and (max-width: 4000px) {
   .flex-row {
@@ -436,14 +337,7 @@
         height: 15em; }
       .user-info .user-cover-photo-container .user-profile-photo {
         width: 98px;
-        height: 98px; }
-  .actual-home-post .header-post {
-    height: 3.8em; }
-    .actual-home-post .header-post img {
-      margin: 0 6px; }
-    .actual-home-post .header-post .date-username {
-      width: 60%;
-      height: 3.5em; } }
+        height: 98px; } }
 
 #form-template-container {
   display: flex;
@@ -527,14 +421,13 @@
 
 .photo-icon {
   align-self: center;
-  font-size: 26px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: solid red;
-  width: 60px;
-  height: 60px; }
+  width: 40px;
+  height: 40px; }
 
 #profile-img-selected {
   display: none; }
@@ -565,11 +458,171 @@ input[type=file] {
 
 @media (min-width: 1024px) and (max-width: 4000px) {
   #form-template-container {
-    margin-top: 50px;
+    margin-top: 20px;
     justify-content: unset;
     border: solid 2px #686666;
     border-radius: 10px;
-    height: 450px; } }
+    height: 500px; } }
+
+.actual-home-post {
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 15px;
+  box-shadow: 0px 0px 6px -2px rgba(0, 0, 0, 0.75); }
+  .actual-home-post .header-post {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 3.5em; }
+    .actual-home-post .header-post img {
+      margin: 0 5px; }
+    .actual-home-post .header-post .date-username {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 52%;
+      height: 3em; }
+      .actual-home-post .header-post .date-username p:first-child {
+        font-weight: bold;
+        font-size: 16px; }
+      .actual-home-post .header-post .date-username p {
+        font-family: 'NanumGothic';
+        font-size: 13px;
+        margin: 0; }
+      .actual-home-post .header-post .date-username select {
+        width: 70px;
+        height: 30px; }
+    .actual-home-post .header-post .menu-container {
+      width: 30%;
+      height: 3.5em;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: row; }
+      .actual-home-post .header-post .menu-container i {
+        margin: 7px 10px;
+        font-size: 22px;
+        color: #575455; }
+    .actual-home-post .header-post .fa-globe-americas {
+      margin: 0 6px; }
+  .actual-home-post .main-post {
+    width: 100%; }
+    .actual-home-post .main-post p {
+      font-family: 'NanumGothic';
+      margin: 0;
+      padding: 10px;
+      width: 100%; }
+    .actual-home-post .main-post div {
+      width: 100%;
+      height: auto; }
+  .actual-home-post .footer-post {
+    padding: 8px;
+    width: 100%; }
+    .actual-home-post .footer-post i {
+      margin: 5px; }
+
+.post-menu {
+  width: 120px;
+  height: 60px; }
+  .post-menu button {
+    width: 100%;
+    height: 30px; }
+
+.comment-menu {
+  width: 95px;
+  height: 40px; }
+  .comment-menu button {
+    width: 100%;
+    height: 20px; }
+
+.style-menu {
+  display: none;
+  position: relative;
+  flex-direction: column;
+  box-shadow: 0px 0px 5px 3px rgba(102, 100, 102, 0.28); }
+  .style-menu button {
+    border: none;
+    background: none; }
+  .style-menu button:first-child {
+    border-bottom: solid 1px #b1afaf; }
+
+.comment-form {
+  margin: 10px 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%; }
+  .comment-form input {
+    width: 80%;
+    height: 36px;
+    margin: 0 8px;
+    border-radius: 8px;
+    border: solid 1px #6d6a6a; }
+  .comment-form button {
+    background: none;
+    border: none; }
+    .comment-form button i {
+      font-size: 17px; }
+
+.comment-container {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .comment-container .actual-home-comment {
+    border-radius: 5px;
+    background-color: #eff3f8;
+    margin: 5px 0;
+    padding: 3px;
+    width: 100%;
+    height: auto; }
+    .comment-container .actual-home-comment p {
+      font-family: 'NanumGothic';
+      margin: 0; }
+    .comment-container .actual-home-comment > p {
+      font-size: 15px;
+      margin: 7px 5px; }
+
+.header-comment {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+  .header-comment .date-username {
+    width: 60%;
+    height: 2.8em;
+    margin: 0 8px; }
+    .header-comment .date-username .comment-userName {
+      font-weight: bold;
+      font-size: 14px; }
+  .header-comment .menu-container {
+    width: 30%;
+    height: 3em;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row; }
+    .header-comment .menu-container i {
+      font-size: 18px;
+      color: #575455; }
+
+.comment-size {
+  width: 40px;
+  height: 40px; }
+
+@media (min-width: 1024px) and (max-width: 4000px) {
+  .actual-home-post .header-post {
+    height: 3.8em; }
+    .actual-home-post .header-post img {
+      margin: 0 6px; }
+    .actual-home-post .header-post .date-username {
+      width: 60%;
+      height: 3.5em; }
+  .header-comment .date-username {
+    width: 90%; }
+  .comment-form {
+    margin: 20px 0; }
+    .comment-form input {
+      width: 90%; } }
 
 @font-face {
   font-family: 'Sifonn';
@@ -600,3 +653,9 @@ input:focus, textarea:focus {
 
 a {
   text-decoration: none; }
+
+.display-flex {
+  display: flex; }
+
+.red {
+  color: red; }

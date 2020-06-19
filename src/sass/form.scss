@@ -86,10 +86,9 @@
 }
 .photo-icon{
   align-self: center;
-  font-size:26px;
+  font-size:20px;
   @include flexModal(column);
-  border: solid red;
-  @include size(60px, 60px);
+  @include size(40px, 40px);
 }
 #profile-img-selected{
   display: none;
@@ -120,10 +119,10 @@ input[type=file]{
 }
 @media  (min-width: 1024px) and (max-width: 4000px){
   #form-template-container{
-    margin-top: 50px;
+    margin-top: 20px;
     justify-content: unset;
     border: solid  2px rgb(104, 102, 102);
     border-radius: 10px;
-    height: 450px;
+    height: 500px;
   }
 }

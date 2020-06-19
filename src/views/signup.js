@@ -1,7 +1,6 @@
 import {
-  registerUserEmail, verificationEmail,
+  registerUserEmail, verificationEmail, updateUserProfile,
 } from '../firebase/auth.js';
-import { updateUserProfile } from '../firebase/profile.js';
 
 export const signup = () => {
   const div = document.createElement('div');

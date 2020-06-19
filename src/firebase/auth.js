@@ -20,7 +20,13 @@ const logInGoogle = () => auth.signInWithPopup(providerGoogle);
 
 const logout = () => auth.signOut();
 
+const updateUserProfile = (userName) => {
+  return firebase.auth().currentUser.updateProfile({
+    displayName: userName,
+  });
+};
+
 export {
   registerUserEmail, verificationEmail, logIn, recoverPassword, logInFacebook,
-  logInGoogle, logout, currentUser,
+  logInGoogle, logout, currentUser, updateUserProfile,
 };

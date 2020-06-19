@@ -41,19 +41,19 @@ export const postForm = () => {
   // SHOW PREVIEW OF SELECTED IMG
   const preview = makeAPostForm.querySelector('#preview');
   const uploadPhoto = makeAPostForm.querySelector('#upload-photo');
-     uploadPhoto.addEventListener('change', (e) => {
-      const img = document.createElement('img');
-      img.className ='preview-img';
-      const file = e.target.files[0];
-      const refPath = `${user.uid}/${file.name}`;
-      uploadPhoto.name = refPath;
-      addFileToStorage(refPath, file).then((response) => {
-          getFileFromStorage(response.metadata.fullPath).then((url) => {
-            img.src = url;
-          });
-        }); 
-      preview.appendChild(img);
+  uploadPhoto.addEventListener('change', (e) => {
+    const img = document.createElement('img');
+    img.className = 'preview-img';
+    const file = e.target.files[0];
+    const refPath = `${user.uid}/${file.name}`;
+    uploadPhoto.name = refPath;
+    addFileToStorage(refPath, file).then((response) => {
+      getFileFromStorage(response.metadata.fullPath).then((url) => {
+        img.src = url;
+      });
     });
+    preview.appendChild(img);
+  });
   // MAKE A POST
   makeAPostForm.addEventListener('submit', (e) => {
     e.preventDefault();
