@@ -24,15 +24,12 @@ const firstTimeUser = (userId, displayName, profilePhoto) => {
     }
   });
 };
-const getPosts = (element, query, value) => {
+const getPosts = (userId, element, query, value) => {
   return db.collection('posts').where(query, '==', value).orderBy('timestamp', 'desc').onSnapshot((postsDocuments) => {
     const changes = postsDocuments.docChanges();
     changes.forEach((change) => {
       if (change.type === 'added') {
-        renderPost(change.doc, element);
-      } else if (change.type === 'removed') {
-        const li = document.querySelector(`[data-id=${change.doc.id}]`);
-        element.removeChild(li);
+        renderPost(userId, change.doc, element);
       }
     });
   });
@@ -53,13 +50,18 @@ const addPost = (userId, content, photo, visibility) => {
     comments: [],
   });
 };
-
-const updateDocument = (collection, docId, arrFields, arrNewValues) => {
-  const obj = {};
-  arrFields.forEach((field, index) => {
-    obj[field] = arrNewValues[index];
+const addComment = (userId, postId, content) => {
+  return db.collection('comments').add({
+    userId,
+    postId,
+    content,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
   });
-  return firebase.firestore().collection(collection).doc(docId).update(obj);
+};
+const updateDocument = (collection, docId, field, value) => {
+  return firebase.firestore().collection(collection).doc(docId).update({
+    [field]: value,
+  });
 };
 const deleteDocument = (collection, docId) => firebase.firestore().collection(collection).doc(docId).delete();
 const deleteDocumentIdFromUserCollection = (userId, docId, field) => {
@@ -70,4 +72,5 @@ const deleteDocumentIdFromUserCollection = (userId, docId, field) => {
 export {
   firstTimeUser, addPost, getPosts, addDocumentIdToUserCollection,
   deleteDocument, deleteDocumentIdFromUserCollection, updateDocument,
+  addComment,
 };

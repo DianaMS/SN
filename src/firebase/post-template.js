@@ -1,13 +1,14 @@
-import { deleteDocument, deleteDocumentIdFromUserCollection, updateDocument, addDocumentIdToUserCollection } from './firestore.js';
+import { deleteDocument, deleteDocumentIdFromUserCollection, updateDocument, addDocumentIdToUserCollection, addComment} from './firestore.js';
+import { getFileFromStorage } from './storage.js'
 
-export const renderPost = (doc, element) => {
+export const renderPost = (userId, doc, element) => {
   const post = doc.data();
   const div = document.createElement('div');
-  div.className = 'actual-home-post';
   div.setAttribute('data-id', doc.id);
+  div.className = 'actual-home-post';
   const template = `
 <div class="header-post">
-  <img src="images/profile-cube.png" alt="profile photo" class="pic-style right-size">
+  <img src="images/profile-cube.png" alt="profile photo" class="user-photo-post pic-style right-size">
   <div class="date-username">
     <p class="post-userName"></p>
     <p></p>
@@ -16,11 +17,15 @@ export const renderPost = (doc, element) => {
 </div>
 <div class="main-post">
   <p>${post.content}</p>
-  <div></div>
 </div>
 <div class="footer-post">
   <i class="far fa-heart"></i><span class="like-counter">${post.likes}</span>
-  <i class="far fa-comments"></i>
+  <i class="far fa-comments"></i><span class="comments-counter"></span>
+  <form class="comment-form">
+      <img src="images/profile-cube.png" alt="profile photo" class="actual-user-photo pic-style comment-size">
+      <input class="comment-text" type="text" required>
+      <button><i class="fa fa-paper-plane"></i></button>
+  </form>
 </div>`;
   div.innerHTML = template;
   // visibility
@@ -33,15 +38,47 @@ export const renderPost = (doc, element) => {
   const postUserName = div.querySelector('.post-userName');
   const headerPost = div.querySelector('.header-post');
   const dateUsername = div.querySelector('.date-username');
+  const likeIcon = div.querySelector('.fa-heart');
   firebase.firestore().collection('users').doc(post.userId).get()
     .then((userDoc) => {
+      postUserName.innerHTML = userDoc.data().userName;
       // display name and photo url
-      if (userDoc.data().userPhoto !== null || userDoc.data().userPhoto !== '') {
-        const photoPost = div.querySelector('.pic-style');
+      if (userDoc.data().userPhoto) {
+        const photoPost = div.querySelector('.user-photo-post');
         photoPost.src = userDoc.data().userPhoto;
       }
-      postUserName.innerHTML = userDoc.data().userName;
-      if (userDoc.data().posts.some((postId) => postId === doc.id)) {
+      // paint user likes
+      if (userDoc.data().myLikes.some((likedPostId) => likedPostId === doc.id)) {
+        likeIcon.classList.add('red');
+      }
+    });
+    // PHOTO
+    const mainPost = div.querySelector('.main-post');
+    if (post.photo !== '') {
+    const img = document.createElement('img');
+    img.className = 'photo-post';
+    img.alt = 'photo';
+    getFileFromStorage(post.photo).then((url) => {
+      img.src = url;
+    });
+    mainPost.appendChild(img);
+  }
+      // likes
+      const likeCounterSpan = div.querySelector('.like-counter');
+      let likeCounter = post.likes;
+      likeIcon.addEventListener('click', () => {
+        likeIcon.classList.toggle('red');
+        if (likeIcon.classList.contains('red')) {
+          likeCounter++;
+          addDocumentIdToUserCollection(userId, doc.id, 'myLikes');
+        } else {
+          likeCounter--;
+          deleteDocumentIdFromUserCollection(userId, doc.id, 'myLikes');
+        }
+        likeCounterSpan.innerHTML = likeCounter;
+        updateDocument('posts', doc.id, 'likes', likeCounter);
+      });
+      if (userId === post.userId) {
         // visibility chnage options
         const visibilitySelect = document.createElement('select');
         const publicOption = document.createElement('option');
@@ -57,7 +94,11 @@ export const renderPost = (doc, element) => {
         }
         dateUsername.replaceChild(visibilitySelect, visibilityIcon);
         visibilitySelect.addEventListener('change', (event) => {
-          updateDocument('posts', doc.id, ['visibility'], [event.target.value]);
+          updateDocument('posts', doc.id, 'visibility', event.target.value);
+          console.log(event.target.value)
+          if (window.location.hash === '#/home' && event.target.value === 'private') {
+            div.parentNode.removeChild(div);
+          }
         });
         // menu options
         const menuContainer = document.createElement('div');
@@ -81,7 +122,8 @@ export const renderPost = (doc, element) => {
         // DELETE POST
         deleteButton.addEventListener('click', () => {
           deleteDocument('posts', doc.id);
-          deleteDocumentIdFromUserCollection(post.userId, doc.id, 'posts');
+          deleteDocumentIdFromUserCollection(post.userId, doc.id, 'myPosts');
+          div.parentNode.removeChild(div);
         });
         // EDIT POST
         const checkIcon = document.createElement('i');
@@ -99,7 +141,7 @@ export const renderPost = (doc, element) => {
         });
         // save changes
         checkIcon.addEventListener('click', () => {
-          updateDocument('posts', doc.id, ['content'], [postText.innerText]);
+          updateDocument('posts', doc.id, 'content', postText.innerText);
           postText.contentEditable = false;
           menuContainer.innerHTML = '';
           menuContainer.appendChild(menu);
@@ -114,26 +156,27 @@ export const renderPost = (doc, element) => {
           menuContainer.appendChild(menuIcon);
         });
       }
-      // likes
-      const likeIcon = div.querySelector('.fa-heart');
-      const likeCounterSpan = div.querySelector('.like-counter');
-      let likeCounter = post.likes;
-      if (userDoc.data().myLikes.some((likedPostId) => likedPostId === doc.id)) {
-        likeIcon.classList.add('red');
-      }
-      likeIcon.addEventListener('click', () => {
-        if (likeIcon.classList.contains('red')) {
-          likeIcon.classList.remove('red');
-          likeCounterSpan.innerHTML = likeCounter--;
-          deleteDocumentIdFromUserCollection(post.userId, doc.id, 'myLikes');
-        } else {
-          likeIcon.classList.add('red');
-          likeCounterSpan.innerHTML = likeCounter++;
-          addDocumentIdToUserCollection(post.userId, doc.id, 'myLikes');
+      //comments
+      const actualUserPhoto = div.querySelector('.actual-user-photo');
+      firebase.firestore().collection('users').doc(userId).get()
+      .then((userDoc) => {
+        if (userDoc.data().userPhoto) {
+          actualUserPhoto.src = userDoc.data().userPhoto;
         }
-        updateDocument('posts', doc.id, ['likes'], [likeCounter]);
       });
-    });
+      // show form
+      const commentIcon = div.querySelector('.fa-comments');
+      const commentForm = div.querySelector('.comment-form');
+      commentIcon.addEventListener('click', () => {
+        commentForm.classList.toggle('display-flex');
+      });
+      // send comment
+      commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const commentText = commentForm.querySelector('.comment-text');
+        addComment(userId, doc.id, commentText.value);
+        addDocumentIdToUserCollection(userId, doc.id, 'myComments');
+      });
   element.appendChild(div);
   return div;
 };

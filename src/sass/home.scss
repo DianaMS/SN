@@ -251,6 +251,29 @@ footer{
 .right-size{
   @include size(50px, 50px);
 }
+// comment form
+.comment-form{
+  display: none;
+  align-items: center;
+  justify-content: space-evenly;
+  // border: solid red;
+      input{
+        border-radius: 8px;
+        border: solid 1px black;
+      @include size(70%, 36px);
+      }
+      button{
+        background: none;
+        border: none;
+        border: none;
+        i{
+          font-size: 18px;
+        }
+      }
+}
+.comment-size{
+  @include size(40px, 40px);
+}
 .pic-style{
 border-radius: 50%;
 background-color: rgba(6, 135, 255, 0.719);

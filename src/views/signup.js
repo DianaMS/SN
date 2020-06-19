@@ -37,8 +37,9 @@ export const signup = () => {
     e.preventDefault();
     registerUserEmail(userEmail, userPassword)
       .then(() => {
-        window.location.hash = '#/home';
-        updateUserProfile(userName);
+        updateUserProfile(userName).then(() => {
+          window.location.hash = '#/home';
+        });
         verificationEmail();
         errorMessage.innerHTML = '';
       })

@@ -392,6 +392,26 @@
   width: 50px;
   height: 50px; }
 
+.comment-form {
+  display: none;
+  align-items: center;
+  justify-content: space-evenly; }
+  .comment-form input {
+    border-radius: 8px;
+    border: solid 1px black;
+    width: 70%;
+    height: 36px; }
+  .comment-form button {
+    background: none;
+    border: none;
+    border: none; }
+    .comment-form button i {
+      font-size: 18px; }
+
+.comment-size {
+  width: 40px;
+  height: 40px; }
+
 .pic-style {
   border-radius: 50%;
   background-color: rgba(6, 135, 255, 0.719); }
@@ -478,7 +498,7 @@
         border: none;
         margin: 8px 0;
         width: 100%;
-        height: 200px;
+        height: 120px;
         resize: none; }
       #form-template-container #switch-content form button {
         justify-self: flex-end;
@@ -487,9 +507,34 @@
         font-size: 16px;
         border-radius: 10px;
         border: solid 1px #686767;
-        margin: 25px 0;
         width: 95px;
         height: 45px; }
+      #form-template-container #switch-content form #preview {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 120px; }
+
+.preview-img {
+  max-width: 100%;
+  max-height: 100%; }
+
+.photo-post {
+  max-width: 100%;
+  height: auto; }
+
+.photo-icon {
+  align-self: center;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: solid red;
+  width: 60px;
+  height: 60px; }
 
 #profile-img-selected {
   display: none; }
@@ -514,6 +559,9 @@
 
 #switch-form {
   width: 100%; }
+
+input[type=file] {
+  display: none; }
 
 @media (min-width: 1024px) and (max-width: 4000px) {
   #form-template-container {

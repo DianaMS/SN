@@ -28,13 +28,13 @@ export const home = () => {
   div.innerHTML = homeView;
   // Personalize Home
   const homePosts = div.querySelector('#home-posts');
-  getPosts(homePosts, 'visibility', 'public');
+  const ProfileName = div.querySelector('.username-bio h3');
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      const ProfileName = div.querySelector('.username-bio h3');
       ProfileName.innerHTML = user.displayName;
       firstTimeUser(user.uid, user.displayName, user.photoURL);
-      if (user.photoURL !== null || user.photoURL !== '') {
+      getPosts(user.uid, homePosts, 'visibility', 'public');
+      if (user.photoURL) {
         const photoPost = div.querySelectorAll('.pic-style');
         photoPost.forEach((imgTag) => {
           imgTag.src = user.photoURL;

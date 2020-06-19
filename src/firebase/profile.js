@@ -1,5 +1,5 @@
 const updateUserProfile = (userName) => {
-  firebase.auth().currentUser.updateProfile({
+  return firebase.auth().currentUser.updateProfile({
     displayName: userName,
   });
 };

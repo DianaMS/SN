@@ -6,6 +6,6 @@ export const profile = () => {
   div.id = 'profile-posts';
   // Personalize profile
   const user = currentUser();
-  getPosts(div, 'userId', user.uid);
+  getPosts(user.uid, div, 'userId', user.uid);
   return div;
 };
