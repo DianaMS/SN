@@ -11,7 +11,7 @@ export const renderComment = (userId, doc, element) => {
       <img src="images/profile-cube.png" alt="profile photo" class="user-photo-comment pic-style comment-size">
       <div class="date-username">
         <p class="comment-userName"></p>
-        <p>dsss</p>
+        <p>${comment.timestamp.toDate().toLocaleDateString()}</p>
       </div>
     </div>
     <p class="comment-p">${comment.content}</p>`;
