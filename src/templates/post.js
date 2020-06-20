@@ -44,10 +44,10 @@ export const renderPost = (userId, doc, element) => {
   const likeIcon = div.querySelector('.fa-heart');
   // DISPALY NAME AND PHOTO URL
   getDocument('users', post.userId, (userDoc) => {
-    postUserName.innerHTML = userDoc.userName;
-    if (userDoc.userPhoto) {
+    postUserName.innerHTML = userDoc.data().userName;
+    if (userDoc.data().userPhoto) {
       const photoPost = div.querySelector('.user-photo-post');
-      photoPost.src = userDoc.userPhoto;
+      photoPost.src = userDoc.data().userPhoto;
     }
   });
   // PHOTO POST
@@ -83,16 +83,17 @@ export const renderPost = (userId, doc, element) => {
       }
     });
     // DISPLAY MENU
-    headerPost.appendChild(renderMenu(userId, doc, div));
+    const postText = div.querySelector('.main-post p');
+    headerPost.appendChild(renderMenu('posts', 'myPosts', userId, doc, div, postText));
   }
   // COMMENT FORM PHOTO
   const actualUserPhoto = div.querySelector('.actual-user-photo');
   getDocument('users', userId, (currentUserDoc) => {
-    if (currentUserDoc.userPhoto) {
-      actualUserPhoto.src = currentUserDoc.userPhoto;
+    if (currentUserDoc.data().userPhoto) {
+      actualUserPhoto.src = currentUserDoc.data().userPhoto;
     }
     // PAINT USER LIKES
-    if (currentUserDoc.myLikes.some((likedPostId) => likedPostId === doc.id)) {
+    if (currentUserDoc.data().myLikes.some((likedPostId) => likedPostId === doc.id)) {
       likeIcon.classList.add('red');
     }
   });
@@ -102,10 +103,10 @@ export const renderPost = (userId, doc, element) => {
   likeIcon.addEventListener('click', () => {
     likeIcon.classList.toggle('red');
     if (likeIcon.classList.contains('red')) {
-      likeCounter++;
+      likeCounter += 1;
       addDocumentIdToUserCollection(userId, doc.id, 'myLikes');
     } else {
-      likeCounter--;
+      likeCounter -= 1;
       deleteDocumentIdFromUserCollection(userId, doc.id, 'myLikes');
     }
     likeCounterSpan.innerHTML = likeCounter;
@@ -119,24 +120,28 @@ export const renderPost = (userId, doc, element) => {
     commentForm.classList.toggle('display-flex');
     commentContainer.classList.toggle('display-flex');
   });
-  // SEND COMMENT
-  commentForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const commentText = commentForm.querySelector('.comment-text');
-    addComment(userId, doc.id, commentText.value).then((comment) => {
-      addDocumentIdToUserCollection(userId, comment.id, 'myComments');
-      getDocument('comments', comment.id, (commentDoc) => {
-        console.log(commentDoc);
-      });
-      commentForm.reset();
-    });
-  });
   // SHOW POST COMMENTS
-  firebase.firestore().collection('comments').where('postId', '==', doc.id).orderBy('timestamp', 'desc')
+  const commentsCounterSpan = div.querySelector('.comments-counter');
+  firebase.firestore().collection('comments').where('postId', '==', doc.id).orderBy('timestamp', 'asc')
     .get()
     .then((comments) => {
+      commentsCounterSpan.textContent = comments.docs.length;
       comments.docs.forEach((comment) => {
         renderComment(userId, comment, commentContainer);
+      });
+      // SEND COMMENT
+      commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const commentText = commentForm.querySelector('.comment-text');
+        addComment(userId, doc.id, commentText.value).then((comment) => {
+          addDocumentIdToUserCollection(userId, comment.id, 'myComments');
+          getDocument('comments', comment.id, (commentDoc) => {
+            renderComment(userId, commentDoc, commentContainer);
+          });
+          commentForm.reset();
+        });
+        const counter = commentContainer.childElementCount + 1;
+        commentsCounterSpan.textContent = counter;
       });
     });
   element.appendChild(div);

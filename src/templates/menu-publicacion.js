@@ -1,6 +1,7 @@
+/* eslint-disable no-param-reassign */
 import { deleteDocument, deleteDocumentIdFromUserCollection, updateDocument } from '../firebase/firestore.js';
 
-export const renderMenu = (userId, doc, div) => {
+export const renderMenu = (collection, userField, userId, doc, actualElement, contentToEdit) => {
   const post = doc.data();
   // MENU OPTIONS
   const menuContainer = document.createElement('div');
@@ -23,19 +24,25 @@ export const renderMenu = (userId, doc, div) => {
   });
   // DELETE POST
   deleteButton.addEventListener('click', () => {
-    deleteDocument('posts', doc.id);
-    deleteDocumentIdFromUserCollection(userId, doc.id, 'myPosts');
-    div.parentNode.removeChild(div);
+    if (collection === 'comments') {
+      const commentContainer = actualElement.parentNode;
+      const commentsCounterSpan = commentContainer.parentNode.querySelector('.comments-counter');
+      const num = parseInt(commentsCounterSpan.innerText);
+      commentsCounterSpan.innerHTML = num - 1;
+    }
+    deleteDocument(collection, doc.id);
+    deleteDocumentIdFromUserCollection(userId, doc.id, userField);
+    actualElement.parentNode.removeChild(actualElement);
   });
   // EDIT POST
   const checkIcon = document.createElement('i');
   checkIcon.className = 'fas fa-check';
   const cancelIcon = document.createElement('i');
   cancelIcon.className = 'fas fa-times';
-  const postText = div.querySelector('.main-post p');
+  let contentValue = post.content;
   editButton.addEventListener('click', () => {
-    postText.contentEditable = true;
-    postText.focus();
+    contentToEdit.contentEditable = true;
+    contentToEdit.focus();
     menu.classList.remove('display-flex');
     menuContainer.innerHTML = '';
     menuContainer.appendChild(checkIcon);
@@ -43,16 +50,17 @@ export const renderMenu = (userId, doc, div) => {
   });
   // save changes
   checkIcon.addEventListener('click', () => {
-    updateDocument('posts', doc.id, 'content', postText.innerText);
-    postText.contentEditable = false;
+    updateDocument(collection, doc.id, 'content', contentToEdit.innerText);
+    contentValue = contentToEdit.innerText;
+    contentToEdit.contentEditable = false;
     menuContainer.innerHTML = '';
     menuContainer.appendChild(menu);
     menuContainer.appendChild(menuIcon);
   });
   // cancel changes
   cancelIcon.addEventListener('click', () => {
-    postText.contentEditable = false;
-    postText.textContent = post.content;
+    contentToEdit.contentEditable = false;
+    contentToEdit.textContent = contentValue;
     menuContainer.innerHTML = '';
     menuContainer.appendChild(menu);
     menuContainer.appendChild(menuIcon);

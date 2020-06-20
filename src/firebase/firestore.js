@@ -11,7 +11,7 @@ const getData = (callback, collectionName) => db.collection(collectionName)
   });
 const getDocument = (collectionName, docId, callback) => db.collection(collectionName).doc(docId)
   .get().then((doc) => {
-    callback({ id: doc.id, ...doc.data() });
+    callback(doc);
   });
 const firstTimeUser = (userId, displayName, profilePhoto) => {
   db.collection('users').doc(userId).get().then((doc) => {
