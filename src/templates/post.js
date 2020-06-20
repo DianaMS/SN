@@ -13,8 +13,7 @@ export const renderPost = (userId, doc, element) => {
   <img src="images/profile-cube.png" alt="profile photo" class="user-photo-post pic-style right-size">
   <div class="date-username">
     <p class="post-userName"></p>
-    <p></p>
-    <i></i>
+    <p class="text">${post.timestamp.toDate().toLocaleDateString()}<i></i></p>
   </div>
 </div>
 <div class="main-post">
@@ -32,7 +31,7 @@ export const renderPost = (userId, doc, element) => {
 </div>`;
   div.innerHTML = template;
   // VISIBILITY ICON
-  const visibilityIcon = div.querySelector('.header-post i');
+  const visibilityIcon = div.querySelector('.text i');
   if (post.visibility === 'public') {
     visibilityIcon.className = 'fas fa-globe-americas';
   } else {
@@ -40,7 +39,7 @@ export const renderPost = (userId, doc, element) => {
   }
   const postUserName = div.querySelector('.post-userName');
   const headerPost = div.querySelector('.header-post');
-  const dateUsername = div.querySelector('.date-username');
+  const dateContainer = div.querySelector('.text');
   const likeIcon = div.querySelector('.fa-heart');
   // DISPALY NAME AND PHOTO URL
   getDocument('users', post.userId, (userDoc) => {
@@ -75,7 +74,7 @@ export const renderPost = (userId, doc, element) => {
       visibilitySelect.appendChild(publicOption);
       visibilitySelect.appendChild(privateOption);
     }
-    dateUsername.replaceChild(visibilitySelect, visibilityIcon);
+    dateContainer.replaceChild(visibilitySelect, visibilityIcon);
     visibilitySelect.addEventListener('change', (event) => {
       updateDocument('posts', doc.id, 'visibility', event.target.value);
       if (window.location.hash === '#/home' && event.target.value === 'private') {
